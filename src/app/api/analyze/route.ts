@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 export async function POST(req: NextRequest) {
   try {
     const { stockCode, stockName } = await req.json();
+
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const prompt = `${stockName}(${stockCode}) 종목을 다음 기준으로 분석해주세요:
 1. 종목발굴 점수 (0-100점)
